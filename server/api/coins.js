@@ -19,7 +19,7 @@ exports.register = function (server, options, next) {
         path: '/coins',
         handler: function (request, reply) {
 
-            reply({ coins: {} });
+            reply({});
 
         }
     });
