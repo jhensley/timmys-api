@@ -2,7 +2,7 @@
 
 Lil' Timmy's doing an online course learning JavaScript, NodeJS and some algorithms but he's struggling. He's asked you, the developer he looks up to most in the world, to help him go through the problems he's been assigned to complete.
 
-He's working in a pre-scaffolded Hapi app which has some plugins prepopulated in the `./server/api/` directory, he's been told he just needs complete the logic and return the correct data in the route handlers. Alongside that he also a set of tests (somewhat unsurprisingly) in the `./tests/` directory.
+He's working in a pre-scaffolded Hapi app which has some plugins prepopulated in the `./server/api/` directory, he's been told he just needs complete the logic and return the correct data in the route handlers. Alongside that he also has a set of tests (somewhat unsurprisingly) in the `./tests/` directory.
 
 Timmy's counting on you. You can't let him down!
 
