@@ -15,6 +15,7 @@ lab.beforeEach((done) => {
     server = new Hapi.Server();
     server.connection({ port: Config.get('/port/api') });
     server.register(plugins, (err) => {
+
         if (err) {
             return done(err);
         }

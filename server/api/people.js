@@ -1,9 +1,9 @@
 'use strict';
 
-var treatments = {
-    doctor: "flu shot",
-    vet: "shots and a chew toy"
-}
+const treatments = {
+    doctor: 'flu shot',
+    vet: 'shots and a chew toy'
+};
 
 exports.register = function (server, options, next) {
 
@@ -24,21 +24,22 @@ exports.register = function (server, options, next) {
 
 };
 
-function _mapPatientsToTreatment(patients, job) {
-    var treatment = treatments[job.toLowerCase()],
-        treatmentsToPatients = [];
+exports.register.attributes = {
+    name: 'people'
+};
 
-    for (var i = 0; i < patients.length; i++) {
-        var patient = patients[i];
+const _mapPatientsToTreatment = function (patients, job) {
+
+    const treatment = treatments[job.toLowerCase()];
+    const treatmentsToPatients = [];
+
+    for (let i = 0; i < patients.length; ++i) {
+        const patient = patients[i];
         treatmentsToPatients.push({
             patient: patient,
             treatment: treatment
-        })
+        });
     };
 
     return treatmentsToPatients;
-}
-
-exports.register.attributes = {
-    name: 'people'
 };

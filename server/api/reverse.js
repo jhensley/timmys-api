@@ -18,15 +18,16 @@ exports.register = function (server, options, next) {
 
 };
 
-function _reverseInput(input) {
-    var reversed = input.split('').reverse().join('');
+exports.register.attributes = {
+    name: 'reverse'
+};
+
+const _reverseInput = function (input) {
+
+    let reversed = input.split('').reverse().join('');
     // Check if the input is a string
     if (!isNaN(input)) {
         reversed = parseFloat(reversed);
-    } 
-    return reversed
-}
-
-exports.register.attributes = {
-    name: 'reverse'
+    };
+    return reversed;
 };
