@@ -17,9 +17,9 @@ Timmy's counting on you. You can't let him down!
 The basis of Timmy's API is a fairly standard Hapi API. You get started in the standard way:
 
 ```
-npm install
-npm test // You can also run `npm run test-cover` to get coverage reports
-npm start
+yarn
+yarn test // You can also run `yarn run test-cover` to get coverage reports
+yarn start
 ```
 
 ## License
