@@ -18,7 +18,7 @@ exports.register = function (server) {
     server.route({
         method: 'GET',
         path: '/coins',
-        handler: function (request) {
+        handler: (request) => {
 
             return {};
 
