@@ -6,86 +6,67 @@ const Config = require('../../../config');
 const Hapi = require('hapi');
 const ReversePlugin = require('../../../server/api/reverse');
 
-const lab = exports.lab = Lab.script();
+const { beforeEach, describe, it } = exports.lab = Lab.script();
 let server;
 
-lab.beforeEach((done) => {
+beforeEach(async () => {
 
     const plugins = [ReversePlugin];
     server = new Hapi.Server();
-    server.connection({ port: Config.get('/port/api') });
-    server.register(plugins, (err) => {
-
-        if (err) {
-            return done(err);
-        }
-        done();
-
-    });
+    server.port = Config.get('/port/api');
+    await server.register(plugins);
 
 });
 
-lab.experiment('Reverse Plugin', () => {
+describe('Reverse Plugin', () => {
 
-    lab.test('it returns simple ASCII strings reverse', (done) => {
+    it('it returns simple ASCII strings reverse', async () => {
 
-        server.inject({
+        const response = await server.inject({
             method: 'GET',
             url: '/reverse?input=foobar'
-        }, (response) => {
-
-            Code.expect(response.result.reversed).to.match(/raboof/i);
-            Code.expect(response.statusCode).to.equal(200);
-            done();
-
         });
+
+        Code.expect(response.result.reversed).to.match(/raboof/i);
+        Code.expect(response.statusCode).to.equal(200);
 
     });
 
-    lab.test('it returns reversed two-byte UTF-8 strings', (done) => {
+    it('it returns reversed two-byte UTF-8 strings', async () => {
 
-        server.inject({
+        const response = await server.inject({
             method: 'GET',
             url: '/reverse?input=éöÿ'
-        }, (response) => {
-
-            Code.expect(response.result.reversed).to.match(/ÿöé/i);
-            Code.expect(response.statusCode).to.equal(200);
-            done();
-
         });
+
+        Code.expect(response.result.reversed).to.match(/ÿöé/i);
+        Code.expect(response.statusCode).to.equal(200);
 
     });
 
-    lab.test('it returns reversed integers', (done) => {
+    it('it returns reversed integers', async () => {
 
-        server.inject({
+        const response = server.inject({
             method: 'GET',
             url: '/reverse?input=309834'
-        }, (response) => {
-
-            Code.expect(response.result.reversed).to.equal(438903);
-            Code.expect(response.result.reversed).to.be.a.number();
-            Code.expect(response.statusCode).to.equal(200);
-            done();
-
         });
+
+        Code.expect(response.result.reversed).to.equal(438903);
+        Code.expect(response.result.reversed).to.be.a.number();
+        Code.expect(response.statusCode).to.equal(200);
 
     });
 
-    lab.test('it returns reversed floats', (done) => {
+    it('it returns reversed floats', async () => {
 
-        server.inject({
+        const response = await server.inject({
             method: 'GET',
             url: '/reverse?input=34.09'
-        }, (response) => {
-
-            Code.expect(response.result.reversed).to.equal(90.43);
-            Code.expect(response.result.reversed).to.be.a.number();
-            Code.expect(response.statusCode).to.equal(200);
-            done();
-
         });
+
+        Code.expect(response.result.reversed).to.equal(90.43);
+        Code.expect(response.result.reversed).to.be.a.number();
+        Code.expect(response.statusCode).to.equal(200);
 
     });
 

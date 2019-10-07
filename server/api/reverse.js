@@ -1,21 +1,17 @@
 'use strict';
 
-exports.register = function (server, options, next) {
+exports.name = 'reverse';
+
+exports.register = function (server) {
 
     server.route({
         method: 'GET',
         path: '/reverse',
-        handler: function (request, reply) {
+        handler: function (request) {
 
-            reply({});
+            return {};
 
         }
     });
 
-    next();
-
-};
-
-exports.register.attributes = {
-    name: 'reverse'
 };

@@ -13,23 +13,11 @@ const manifest = {
         debug: {
             request: ['error']
         },
-        connections: {
-            routes: {
-                security: true
-            }
-        }
+        port: Config.get('/port/api')
     },
-    connections: [{
-        port: Config.get('/port/api'),
-        labels: ['api']
-    }],
-    registrations: [{
-        plugin: './server/api/reverse'
-    }, {
-        plugin: './server/api/coins'
-    }, {
-        plugin: './server/api/people'
-    }]
+    register: {
+        plugins: ['./server/api/reverse', './server/api/coins', './server/api/people']
+    }
 };
 
 const store = new Confidence.Store(manifest);

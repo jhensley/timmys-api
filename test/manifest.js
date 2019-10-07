@@ -4,21 +4,19 @@ const Lab = require('lab');
 const Code = require('code');
 const Manifest = require('../manifest');
 
-const lab = exports.lab = Lab.script();
+const { describe, it } = exports.lab = Lab.script();
 
-lab.experiment('Manifest', () => {
+describe('Manifest', () => {
 
-    lab.test('it gets manifest data', (done) => {
+    it('it gets manifest data', async () => {
 
-        Code.expect(Manifest.get('/')).to.be.an.object();
-        done();
+        await Code.expect(Manifest.get('/')).to.be.an.object();
 
     });
 
-    lab.test('it gets manifest meta data', (done) => {
+    it('it gets manifest meta data', async () => {
 
-        Code.expect(Manifest.meta('/')).to.match(/This file defines Timmys API/i);
-        done();
+        await Code.expect(Manifest.meta('/')).to.match(/This file defines Timmys API/i);
 
     });
 
