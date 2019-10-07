@@ -8,6 +8,7 @@ const composeOptions = {
 };
 
 module.exports = async function () {
+
     try {
         const server = await Glue.compose(Manifest.get('/'), composeOptions);
         await server.start();
@@ -18,4 +19,5 @@ module.exports = async function () {
         console.error(err);
         process.exit(1);
     }
+
 };

@@ -9,9 +9,22 @@ exports.register = function (server) {
         path: '/reverse',
         handler: (request) => {
 
-            return {};
+            return {
+                reversed: _reverseInput(request.query.input)
+            };
 
         }
     });
 
+};
+
+const _reverseInput = function (input) {
+
+    let reversed = input.split('').reverse().join('');
+    // Check if the input is a string
+    if (!isNaN(input)) {
+        reversed = parseFloat(reversed);
+    }
+
+    return reversed;
 };
