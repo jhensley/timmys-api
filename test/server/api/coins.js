@@ -25,7 +25,7 @@ describe('Coins Plugin', () => {
         const response = await server.inject({
             method: 'GET',
             url: '/coins?total=22.20'
-        })
+        });
 
         Code.expect(response.result).to.be.an.object();
         Code.expect(response.result.total).to.equal(22.20);

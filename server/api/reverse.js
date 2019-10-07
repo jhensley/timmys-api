@@ -7,7 +7,7 @@ exports.register = function (server) {
     server.route({
         method: 'GET',
         path: '/reverse',
-        handler: function (request) {
+        handler: (request) => {
 
             return {};
 
