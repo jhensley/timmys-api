@@ -4,21 +4,19 @@ const Lab = require('lab');
 const Code = require('code');
 const Config = require('../config');
 
-const lab = exports.lab = Lab.script();
+const { describe, it } = exports.lab = Lab.script();
 
-lab.experiment('Config', () => {
+describe('Config', () => {
 
-    lab.test('it gets config data', (done) => {
+    it('it gets config data', async () => {
 
-        Code.expect(Config.get('/')).to.be.an.object();
-        done();
+        await Code.expect(Config.get('/')).to.be.an.object();
 
     });
 
-    lab.test('it gets config meta data', (done) => {
+    it('it gets config meta data', async () => {
 
-        Code.expect(Config.meta('/')).to.match(/This file configures Timmys API/i);
-        done();
+        await Code.expect(Config.meta('/')).to.match(/This file configures Timmys API/i);
 
     });
 

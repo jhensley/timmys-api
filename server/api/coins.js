@@ -11,23 +11,18 @@
  *    1  Bar
  *    2  Bars
  */
+exports.name = 'coins';
 
-exports.register = function (server, options, next) {
+exports.register = function (server) {
 
     server.route({
         method: 'GET',
         path: '/coins',
-        handler: function (request, reply) {
+        handler: function (request) {
 
-            reply({});
+            return {};
 
         }
     });
 
-    next();
-
-};
-
-exports.register.attributes = {
-    name: 'coins'
 };

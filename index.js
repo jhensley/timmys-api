@@ -7,4 +7,15 @@ const composeOptions = {
     relativeTo: __dirname
 };
 
-module.exports = Glue.compose.bind(Glue, Manifest.get('/'), composeOptions);
+module.exports = async function () {
+    try {
+        const server = await Glue.compose(Manifest.get('/'), composeOptions);
+        await server.start();
+
+        console.log('Started the Timmy\'s API on port ' + server.info.port);
+    }
+    catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+};
