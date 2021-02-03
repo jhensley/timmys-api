@@ -30,6 +30,6 @@
   "devDependencies": {
     "code": "^5.2.4",
     "lab": "^18.0.2",
-    "nodemon": "^1.19.3"
+    "nodemon": "^2.0.7"
   }
 }
