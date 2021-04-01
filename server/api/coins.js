@@ -11,6 +11,9 @@
  *    1  Bar
  *    2  Bars
  */
+const foos = [1, 5, 10, 20, 50];
+const bars = [1, 2];
+
 exports.name = 'coins';
 
 exports.register = function (server) {
@@ -20,9 +23,44 @@ exports.register = function (server) {
         path: '/coins',
         handler: (request) => {
 
-            return {};
+            const params = request.query;
+
+            const total = parseFloat(params.total);
+            const queryFoos = params.total.split('.')[1];
+            const queryBars = parseInt(total);
+
+            // Return the JSON object
+            return {
+                total,
+                coins: {
+                    foos: _getCurrency(queryFoos, foos),
+                    bars: _getCurrency(queryBars, bars)
+                }
+            };
 
         }
     });
 
+};
+
+const _getCurrency = function (value, bits) {
+
+    const sorted = bits.sort((a, b) => {
+
+        return a < b;
+    });
+    const split = {};
+
+    let bit;
+    let i = 0;
+
+    while (bit = sorted[i++]) {
+        split[bit] = 0;
+        if (value >= bit) {
+            split[bit] = ~~(value / bit);
+            value %= bit;
+        }
+    }
+
+    return split;
 };

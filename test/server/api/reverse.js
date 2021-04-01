@@ -46,7 +46,7 @@ describe('Reverse Plugin', () => {
 
     it('it returns reversed integers', async () => {
 
-        const response = server.inject({
+        const response = await server.inject({
             method: 'GET',
             url: '/reverse?input=309834'
         });

@@ -4,7 +4,7 @@ const Lab = require('lab');
 const Code = require('code');
 const Config = require('../../../config');
 const Hapi = require('hapi');
-const CoinsPlugin = require('../../../server/api/reverse');
+const CoinsPlugin = require('../../../server/api/coins');
 
 const { beforeEach, describe, it } = exports.lab = Lab.script();
 let server;
